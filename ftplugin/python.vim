@@ -1,12 +1,8 @@
 set nowrap " Don't wrap lines at all
+autocmd TextChanged <buffer> silent write " Autosave
 
-" Indent settings
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+" File format settings
 set textwidth=79
-set expandtab
-set autoindent
 set fileformat=unix
 
 " Custom maps

@@ -9,10 +9,6 @@ set backupdir=~/.vim/vimtmp/,.
 set directory=~/.vim/vimtmp/,.
 "}}}
 
-" Vim autosave -----{{{
-" autocmd TextChanged <buffer> silent write
-"}}}
-
 " Vim settings -----{{{
 set hlsearch                " Highlight search results
 set incsearch               " Match search results while typing
@@ -23,7 +19,7 @@ set guifont=JetBrains\ mono " Use JetBrains mono (https://www.jetbrains.com/lp/m
 set breakindent             " Wrapped lines maintain indent
 set nofoldenable            " Open all folds when opening file
 
-" The following settings should be overwritten in ftplugin files, keep this as fallback
+" The following settings can be overwritten in ftplugin files, keep this as fallback
 set formatoptions=l         " Don't break lines longer than textwidth
 set linebreak               " Break lines semantically, not at last char on screen
 set tabstop=8               " Amount of actual spaces per tab. Don't touch!
@@ -52,6 +48,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ycm-core/lsp-examples'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 call plug#end()
 "}}}
 
@@ -199,9 +197,12 @@ noremap <S-Enter> O<Esc>
 noremap <C-E> <Cmd>NERDTree<cr>
 nnoremap <leader>n <Cmd>NERDTreeFocus<cr>
 
-" GoTos van YCM
+" GoTos of YCM
 nmap <silent> gd :YcmCompleter GoToDefinition<CR>
 nmap <silent> gr :YcmCompleter GoToReferences<CR>
+
+" Markdown previewer
+nmap <leader>p <Plug>MarkdownPreviewToggle
 "}}}
 
 " Spell settings -----{{{
