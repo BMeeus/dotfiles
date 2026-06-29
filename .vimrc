@@ -19,7 +19,7 @@ set incsearch               " Match search results while typing
 packadd nohlsearch          " Make search highlight disappear automatically
 set number relativenumber   " Absolute line nr at cursor, others relative
 set conceallevel=2          " Conceal twice
-set guifont=JetBrains\ mono " Use JetBrains mono font
+set guifont=JetBrains\ mono " Use JetBrains mono (https://www.jetbrains.com/lp/mono/)
 set breakindent             " Wrapped lines maintain indent
 set nofoldenable            " Open all folds when opening file
 
