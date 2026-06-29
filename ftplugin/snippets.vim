@@ -1,0 +1,2 @@
+nnoremap <leader>/ I#<esc>
+
