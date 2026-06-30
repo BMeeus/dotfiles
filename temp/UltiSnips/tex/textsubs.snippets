@@ -1,0 +1,56 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1' or env('align')
+
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
+
+def notmath():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '0'
+endglobal
+
+
+context "notmath()"
+snippet '\s([B-HJ-Zb-z])([\n\s.,?!:'\-\)])' "standalone letter to math" rA
+`!p snip.rv=" $"+match.group(1)+"$"+match.group(2)`
+endsnippet
+
+context "notmath()"
+snippet '\s([AIa])v([\n\s.,?!:'\-)])' "add previous functionality to A, I and a" rA
+`!p snip.rv=" $"+match.group(1)+"$"+match.group(2)`
+endsnippet
+
+context "notmath()"
+snippet '\s([A-Za-z])([\d])([\n\s.,?!:'\-)])' "standalone letter and subscript number to math" rA
+`!p snip.rv=" $"+match.group(1)+"_"+match.group(2)+"$"+match.group(3)`
+endsnippet
+
+context "notmath()"
+snippet '\s([A-Za-z0-9]+)\s*(\+|-\s|\*|<|>|<=|>=|!=|=|<<|>>)\s*([A-Za-z0-9]+)([\n\s.,?!:'\-)])' "expressions of the form of +-*/ to math" rA
+`!p
+if match.group(2)=="*":
+	op = " \\cdot "
+elif match.group(2)=="<=":
+	op = " \\le "
+elif match.group(2)==">=":
+	op = " \\ge "
+elif match.group(2)=="!=":
+	op = " \\neq "
+elif match.group(2)=="<<":
+	op = " \\ll "
+elif match.group(2)==">>":
+	op = " \\gg "
+else:
+	op = match.group(2)
+
+snip.rv =" $"+match.group(1)+op+match.group(3)+"$"+match.group(4)`
+endsnippet
+
+context "notmath()"
+snippet '\s(\\?[A-Za-z0-9]+)_([A-Za-z0-9]+)([\n\s.,?!:'\-\)])' "standalone alfanum and subscript alfanum to math" rA
+`!p snip.rv=" $"+match.group(1)+"_{"+match.group(2)+"}$"+match.group(3)`
+endsnippet

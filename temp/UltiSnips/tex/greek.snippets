@@ -1,0 +1,327 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1' or env('align')
+
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
+
+def envs(*args):
+	for name in args:
+		[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+		if x != '0' and y != '0':
+			return 1
+
+def notmath():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '0'
+endglobal
+
+snippet @a "alpha" iA
+\alpha
+endsnippet
+
+context "notmath()"
+snippet '\\alpha([\n\s,.?!:'-)])' "alpha" rA
+`!p snip.rv = r"$\alpha$"+match.group(1)`
+endsnippet
+
+snippet @b "beta" iA
+\beta
+endsnippet
+
+context "notmath()"
+snippet '\\beta([\n\s,.?!:'-)])' "beta" rA
+`!p snip.rv = r"$\beta$"+match.group(1)`
+endsnippet
+
+snippet @g "gamma" iA
+\gamma
+endsnippet
+
+context "notmath()"
+snippet '\\gamma([\n\s,.?!:'-)])' "gamma" rA
+`!p snip.rv = r"$\gamma$"+match.group(1)`
+endsnippet
+
+snippet @G "Gamma" iA
+\Gamma
+endsnippet
+
+context "notmath()"
+snippet '\\Gamma([\n\s,.?!:'-)])' "Gamma" rA
+`!p snip.rv = r"$\Gamma$"+match.group(1)`
+endsnippet
+
+snippet @d "delta" iA
+\delta
+endsnippet
+
+context "notmath()"
+snippet '\\delta([\n\s,.?!:'-)])' "delta" rA
+`!p snip.rv = r"$\delta$"+match.group(1)`
+endsnippet
+
+snippet @D "Delta" iA
+\Delta
+endsnippet
+
+context "notmath()"
+snippet '\\Delta([\n\s,.?!:'-)])' "Delta" rA
+`!p snip.rv = r"$\Delta$"+match.group(1)`
+endsnippet
+
+snippet @e "epsilon" iA
+\varepsilon
+endsnippet
+
+context "notmath()"
+snippet '\\varepsilon([\n\s,.?!:'-)])' "epsilon" rA
+`!p snip.rv = r"$\varepsilon$"+match.group(1)`
+endsnippet
+
+snippet @z "zeta" iA
+\zeta
+endsnippet
+
+context "notmath()"
+snippet '\\zeta([\n\s,.?!:'-)])' "zeta" rA
+`!p snip.rv = r"$\zeta$"+match.group(1)`
+endsnippet
+
+snippet @th "theta" iA
+\theta
+endsnippet
+
+context "notmath()"
+snippet '\\theta([\n\s,.?!:'-)])' "theta" rA
+`!p snip.rv = r"$\theta$"+match.group(1)`
+endsnippet
+
+snippet @Th "Theta" iA
+\Theta
+endsnippet
+
+context "notmath()"
+snippet '\\Theta([\n\s,.?!:'-)])' "Theta" rA
+`!p snip.rv = r"$\Theta$"+match.group(1)`
+endsnippet
+
+snippet @i "iota" iA
+\iota
+endsnippet
+
+context "notmath()"
+snippet '\\iota([\n\s,.?!:'-)])' "iota" rA
+`!p snip.rv = r"$\iota$"+match.group(1)`
+endsnippet
+
+snippet @k "kappa" iA
+\kappa
+endsnippet
+
+context "notmath()"
+snippet '\\kappa([\n\s,.?!:'-)])' "kappa" rA
+`!p snip.rv = r"$\kappa$"+match.group(1)`
+endsnippet
+
+snippet @l "lambda" iA
+\lambda
+endsnippet
+
+context "notmath()"
+snippet '\\lambda([\n\s,.?!:'-)])' "lambda" rA
+`!p snip.rv = r"$\lambda$"+match.group(1)`
+endsnippet
+
+snippet @L "Lambda" iA
+\Lambda
+endsnippet
+
+context "notmath()"
+snippet '\\Lambda([\n\s,.?!:'-)])' "Lambda" rA
+`!p snip.rv = r"$\Lambda$"+match.group(1)`
+endsnippet
+
+snippet @s "sigma" iA
+\sigma
+endsnippet
+
+context "notmath()"
+snippet '\\sigma([\n\s,.?!:'-)])' "sigma" rA
+`!p snip.rv = r"$\sigma$"+match.group(1)`
+endsnippet
+
+snippet @S "Sigma" iA
+\Sigma
+endsnippet
+
+context "notmath()"
+snippet '\\Sigma([\n\s,.?!:'-)])' "Sigma" rA
+`!p snip.rv = r"$\Sigma$"+match.group(1)`
+endsnippet
+
+snippet @u "upsilon" iA
+\upsilon
+endsnippet
+
+context "notmath()"
+snippet '\\upsilon([\n\s,.?!:'-)])' "upsilon" rA
+`!p snip.rv = r"$\upsilon$"+match.group(1)`
+endsnippet
+
+snippet @U "Upsilon" iA
+\Upsilon
+endsnippet
+
+context "notmath()"
+snippet '\\Upsilon([\n\s,.?!:'-)])' "Upsilon" rA
+`!p snip.rv = r"$\Upsilon$"+match.group(1)`
+endsnippet
+
+snippet @o "omega" iA
+\omega
+endsnippet
+
+context "notmath()"
+snippet '\\omega([\n\s,.?!:'-)])' "omega" rA
+`!p snip.rv = r"$\omega$"+match.group(1)`
+endsnippet
+
+snippet @O "Omega" iA
+\Omega
+endsnippet
+
+context "notmath()"
+snippet '\\Omega([\n\s,.?!:'-)])' "Omega" rA
+`!p snip.rv = r"$\Omega$"+match.group(1)`
+endsnippet
+
+snippet @ph "phi" iA
+\phi
+endsnippet
+
+context "notmath()"
+snippet '\\phi([\n\s,.?!:'-)])' "phi" rA
+`!p snip.rv = r"$\phi$"+match.group(1)`
+endsnippet
+
+snippet @Ph "Phi" iA
+\Phi
+endsnippet
+
+context "notmath()"
+snippet '\\Phi([\n\s,.?!:'-)])' "Phi" rA
+`!p snip.rv = r"$\Phi$"+match.group(1)`
+endsnippet
+
+snippet @ta "tau" iA
+\tau
+endsnippet
+
+context "notmath()"
+snippet '\\tau([\n\s,.?!:'-)])' "tau" rA
+`!p snip.rv = r"$\tau$"+match.group(1)`
+endsnippet
+
+snippet @Ta "Tau" iA
+\Tau
+endsnippet
+
+context "notmath()"
+snippet '\\Tau([\n\s,.?!:'-)])' "Tau" rA
+`!p snip.rv = r"$\Tau$"+match.group(1)`
+endsnippet
+
+snippet @r "rho" iA
+\rho
+endsnippet
+
+context "notmath()"
+snippet '\\rho([\n\s,.?!:'-)])' "rho" rA
+`!p snip.rv = r"$\rho$"+match.group(1)`
+endsnippet
+
+snippet @x "xi" iA
+\xi
+endsnippet
+
+context "notmath()"
+snippet '\\xi([\n\s,.?!:'-)])' "xi" rA
+`!p snip.rv = r"$\xi$"+match.group(1)`
+endsnippet
+
+snippet @pi "pi" iA
+\pi
+endsnippet
+
+context "notmath()"
+snippet '\\pi([\n\s,.?!:'-)])' "pi" rA
+`!p snip.rv = r"$\pi$"+match.group(1)`
+endsnippet
+
+snippet @Pi "Pi" iA
+\Pi
+endsnippet
+
+context "notmath()"
+snippet '\\Pi([\n\s,.?!:'-)])' "Pi" rA
+`!p snip.rv = r"$\Pi$"+match.group(1)`
+endsnippet
+
+snippet @ps "psi" iA
+\psi
+endsnippet
+
+context "notmath()"
+snippet '\\psi([\n\s,.?!:'-)])' "psi" rA
+`!p snip.rv = r"$\psi$"+match.group(1)`
+endsnippet
+
+snippet @Ps "Psi" iA
+\Psi
+endsnippet
+
+context "notmath()"
+snippet '\\Psi([\n\s,.?!:'-)])' "Psi" rA
+`!p snip.rv = r"$\Psi$"+match.group(1)`
+endsnippet
+
+snippet @c "chi" iA
+\chi
+endsnippet
+
+context "notmath()"
+snippet '\\chi([\n\s,.?!:'-)])' "chi" rA
+`!p snip.rv = r"$\chi$"+match.group(1)`
+endsnippet
+
+snippet @C "Chi" iA
+\Chi
+endsnippet
+
+context "notmath()"
+snippet '\\Chi([\n\s,.?!:'-)])' "Chi" rA
+`!p snip.rv = r"$\Chi$"+match.group(1)`
+endsnippet
+
+snippet @m "mu" iA
+\mu
+endsnippet
+
+context "notmath()"
+snippet '\\mu([\n\s,.?!:'-)])' "mu" rA
+`!p snip.rv = r"$\mu$"+match.group(1)`
+endsnippet
+
+snippet @n "nu" iA
+\nu
+endsnippet
+
+context "notmath()"
+snippet '\\nu([\n\s,.?!:'-)])' "nu" rA
+`!p snip.rv = r"$\nu$"+match.group(1)`
+endsnippet
+

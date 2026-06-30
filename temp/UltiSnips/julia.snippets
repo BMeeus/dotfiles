@@ -1,0 +1,43 @@
+snippet func "Julia function" 
+function ${1:function_name}(${2:args}${3/.+/; /}${3:kwargs})
+	$0
+end
+endsnippet
+
+snippet if "if statement" 
+if ${1:condition}
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet eif "elseif" 
+elseif $1
+	$0
+endsnippet
+
+snippet for "for loop" 
+for ${1:var} in ${2:iterable}
+	${0:${VISUAL}}
+end
+endsnippet
+
+snippet const "constant" 
+const ${1:name}${2/.+/::/ }${2:Type} = $0
+endsnippet
+
+snippet str "struct" 
+struct ${1:name} ${2/.+/<:/} ${2:SuperType} 
+	$0
+end
+endsnippet
+
+snippet mutstr "mutable struct" 
+${1:@kwdef }mutable struct ${2:name} ${3/.+/<:/} ${3:SuperType}
+	$0
+end
+endsnippet
+
+snippet ret "return" 
+return ${0:nothing}
+endsnippet
+

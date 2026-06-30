@@ -1,0 +1,147 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1' or env('align')
+
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
+
+def envs(*args):
+	for name in args:
+		[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+		if x != '0' and y != '0':
+			return '1'
+endglobal
+
+
+
+snippet '(mk|km)' "Math" wrA
+\$$1\$$0
+endsnippet
+
+snippet dm "Math" wA
+
+\begin{equation}
+    $1.
+\end{equation}
+$0
+endsnippet
+
+priority 100
+snippet dm "Math" bA
+\begin{equation}
+    $1.
+\end{equation}
+$0
+endsnippet
+
+snippet beg "begin environment" bA
+\begin{${1:equation}}
+    $2
+\end{$1}
+$0
+endsnippet
+
+snippet table "Table environment" b
+\begin{table}[${1:htpb}]
+	\centering
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+	\begin{tabular}{${5:c}}
+	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
+	\end{tabular}
+\end{table}
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${1:htpb}]
+	\centering
+	${2:\includegraphics[width=0.8\textwidth]{$3}}
+	\caption{${4:$3}}\label{fig:${5:${3/\W+/-/g}}}
+\end{figure}
+endsnippet
+
+snippet enum "Enumerate" bA
+\begin{enumerate}
+	\item${1/.+/\[/}$1${1/.+/\]/} $0
+\end{enumerate}
+endsnippet
+
+snippet itemize "Itemize" bA
+\begin{itemize}
+	\item${1/.+/\[/}$1${1/.+/\]/} $0
+\end{itemize}
+endsnippet
+
+context "envs('itemize', 'enumerate', 'description')"
+snippet nitem "new item" A
+\item${1/.+/\[/}$1${1/.+/\]/} $0
+endsnippet
+
+snippet desc "Description" b
+\begin{description}
+	\item[$1] $0
+\end{description}
+endsnippet
+
+snippet pac "Package" b
+\usepackage[${1:options}]{${2:package}}$0
+endsnippet
+
+snippet pmat "pmat" iA
+\begin{pmatrix} $1 \end{pmatrix} $0
+endsnippet
+
+snippet vmat "pmat" iA
+\begin{vmatrix} $1 \end{vmatrix} $0
+endsnippet
+
+#context "envs('pmatrix', 'tabular', 'NiceTabular', 'matrix', 'vmatrix')"
+#snippet '\s\s' "next item" riA
+# & 
+#endsnippet
+
+#context "envs('pmatrix', 'tabular', 'NiceTabular', 'matrix')"
+#snippet \\ "next item" iA
+#\\\\
+#
+#endsnippet
+
+snippet bmat "bmat" iA
+\begin{bmatrix} $1 \end{bmatrix} $0
+endsnippet
+
+context "math()"
+snippet tt "text" iA
+\text{$1}$0
+endsnippet
+
+context "math()"
+snippet case "cases" wA
+\begin{cases}
+	$1
+\end{cases}
+endsnippet
+
+context "envs('equation', 'align')"
+snippet ,, "spaced comma" iA
+, \quad 
+endsnippet
+
+snippet btext "boxed text" bA
+\begin{boxedtext}
+	${1:${VISUAL}}
+\end{boxedtext}
+$0
+endsnippet
+
+snippet bitem "boxed item" bA
+\begin{boxeditem}${1/.+/\[/}$1${1/.+/\]/}
+	$2
+\end{boxeditem}
+$0
+endsnippet
+

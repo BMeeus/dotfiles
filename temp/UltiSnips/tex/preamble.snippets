@@ -1,0 +1,301 @@
+snippet newdoc "New Document" A
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{hyperref} % creates hyperlinks, does not vibe with math in section headers
+% \usepackage{mathpazo} % Use the Palatino font by default
+% \usepackage{palatino}
+\usepackage{graphicx} % graphics
+\usepackage{float} % floats
+\usepackage{titling} % drop vertical space before the title
+\usepackage{multirow} % allows multi row cells in tables
+\usepackage{lscape} % allows placing parts in lanscape
+\usepackage{amsmath} % lots of math
+\usepackage{amssymb} % even more math
+\usepackage{subcaption} % allows captions for subfigs
+\usepackage[english]{babel} % spellcheck
+\usepackage{titlesec} % Control over titlestyles
+\usepackage{amsthm} % new theorem envs
+\usepackage{todonotes} % I mean, its obvious
+\usepackage{enumitem} % more control over enumerate/itemise
+\usepackage{cancel} % for slashing trough symbols
+
+\usepackage{listings} % Displaying code
+\lstset{basicstyle=\ttfamily\footnotesize,
+  showstringspaces=false,
+  commentstyle=\color{gray},
+  keywordstyle=\color{blue},
+  breaklines=true
+}
+
+\usepackage[a4paper, total={6in, 9.5in}]{geometry} % Use A4 in stead of letter
+\fontfamily{ppl}\selectfont 
+
+\usepackage{setspace} % paragraphs and stuff
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\parindent}{0 em}
+\setlength{\parskip}{0.4 cm}
+\setlength{\intextsep}{0pt}
+
+\setstretch{1.125}
+\setlength\abovedisplayskip{0pt}
+\setlength\belowdisplayskip{0pt}
+
+\usepackage{mathtools} % mathematical typesetting
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\sto}{\overset{s}{\to}} % strong conv
+\newcommand{\wto}{\overset{w}{\to}} % weak conv
+\DeclareMathOperator{\Ima}{Im} % Image of func
+\newcommand{\bigslant}[2]{{\left.\raisebox{.2em}{$#1$}\middle/\raisebox{-.2em}{$#2$}\right.}} % Quotient space
+
+\newtheorem{theo}{Theorem}
+\newtheorem{lemma}[theo]{Lemma}
+\newtheorem{prop}[theo]{Proposition}
+\newtheorem{coro}[theo]{Corollary}
+
+% Boxed text environment
+\newsavebox{\boxedtextbox}
+
+\newenvironment{boxedtext}
+  {%
+    \par\noindent
+    \begin{lrbox}{\boxedtextbox}%
+      \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+      \ignorespaces
+  }
+  {%
+      \end{minipage}%
+    \end{lrbox}%
+    \fbox{\usebox{\boxedtextbox}}%
+    \par
+  }
+
+% Boxed text that is single item
+\newenvironment{boxeditem}[1][\relax]{%
+    \begin{boxedtext}
+    \begin{itemize}
+      \ifx#1\relax % Use dot if no argument given
+        \item
+      \else
+        \item[#1]
+      \fi
+      \ignorespaces}
+  {%
+    \end{itemize}
+    \end{boxedtext}
+  }
+
+
+% BIBLIOGRAPHY %%%%%%%%%%%%%%
+%\usepackage[style=numeric,natbib=true, sorting=ynt]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+%\usepackage{csquotes}
+%\setquotestyle{english}
+
+% \addbibresource{Refs.bib} % The filename of the bibliography
+
+% To print bibliography, add \printbibliography to EOF
+
+
+\singlespacing
+
+\setlength{\droptitle}{-5em} %% Don't touch
+
+% TITLE:
+\title{$1}
+
+% AUTHORS:
+\author{Branko Meeus
+    }
+\begin{document}
+{\setstretch{.8}
+\maketitle
+}
+
+\section{Introduction}
+$0
+
+
+\end{document}
+endsnippet
+
+
+snippet anonnewdoc "New Document" A
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{hyperref} % creates hyperlinks, does not vibe with math in section headers
+% \usepackage{mathpazo} % Use the Palatino font by default
+% \usepackage{palatino}
+\usepackage{graphicx} % graphics
+\usepackage{float} % floats
+\usepackage{titling} % drop vertical space before the title
+\usepackage{multirow} % allows multi row cells in tables
+\usepackage{lscape} % allows placing parts in lanscape
+\usepackage{amsmath} % lots of math
+\usepackage{amssymb} % even more math
+\usepackage{subcaption} % allows captions for subfigs
+\usepackage[english]{babel} % spellcheck
+\usepackage{titlesec} % Control over titlestyles
+\usepackage{amsthm} % new theorem envs
+\usepackage{todonotes} % I mean, its obvious
+\usepackage{enumitem} % more control over enumerate/itemise
+\usepackage{cancel} % for slashing trough symbols
+
+\usepackage{listings} % Displaying code
+\lstset{basicstyle=\ttfamily\footnotesize,
+  showstringspaces=false,
+  commentstyle=\color{gray},
+  keywordstyle=\color{blue},
+  breaklines=true
+}
+
+\usepackage[a4paper, total={6in, 9.5in}]{geometry} % Use A4 in stead of letter
+\fontfamily{ppl}\selectfont 
+
+\usepackage{setspace} % paragraphs and stuff
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\parindent}{0 em}
+\setlength{\parskip}{0.4 cm}
+\setlength{\intextsep}{0pt}
+
+\setstretch{1.125}
+\setlength\abovedisplayskip{0pt}
+\setlength\belowdisplayskip{0pt}
+
+\usepackage{mathtools} % mathematical typesetting
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\sto}{\overset{s}{\to}} % strong conv
+\newcommand{\wto}{\overset{w}{\to}} % weak conv
+\DeclareMathOperator{\Ima}{Im} % Image of func
+\newcommand{\bigslant}[2]{{\left.\raisebox{.2em}{$#1$}\middle/\raisebox{-.2em}{$#2$}\right.}} % Quotient space
+
+\newtheorem{theo}{Theorem}
+\newtheorem{lemma}[theo]{Lemma}
+\newtheorem{prop}[theo]{Proposition}
+\newtheorem{coro}[theo]{Corollary}
+
+% Boxed text environment
+\newsavebox{\boxedtextbox}
+
+\newenvironment{boxedtext}
+  {%
+    \par\noindent
+    \begin{lrbox}{\boxedtextbox}%
+      \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+      \ignorespaces
+  }
+  {%
+      \end{minipage}%
+    \end{lrbox}%
+    \fbox{\usebox{\boxedtextbox}}%
+    \par
+  }
+
+% Boxed text that is single item
+\newenvironment{boxeditem}[1][\relax]{%
+    \begin{boxedtext}
+    \begin{itemize}
+      \ifx#1\relax % Use dot if no argument given
+        \item
+      \else
+        \item[#1]
+      \fi
+      \ignorespaces}
+  {%
+    \end{itemize}
+    \end{boxedtext}
+  }
+
+
+% BIBLIOGRAPHY %%%%%%%%%%%%%%
+%\usepackage[style=numeric,natbib=true, sorting=ynt]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+%\usepackage{csquotes}
+%\setquotestyle{english}
+
+% \addbibresource{Refs.bib} % The filename of the bibliography
+% To print bibliography, add \printbibliography to EOF
+
+\singlespacing
+
+\setlength{\droptitle}{-5em} %% Don't touch
+
+% TITLE:
+\title{$1}
+
+\date{}
+
+\begin{document}
+{\setstretch{.8}
+\maketitle
+}
+
+\section{Introduction}
+$0
+
+
+\end{document}
+endsnippet
+
+snippet ExSleutel "Template voor examensleutel" bA 
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage{framed}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{array}
+
+\setlength{\headheight}{50pt}
+
+\begin{document}%begin van het document
+\pagestyle{fancy} \lhead{${1:2}de bach. fysica\\\\} \chead{\textbf{${2:Titel van het vak}\\\\}}  \lfoot{${3:datum/van/examen}} \cfoot{} \rfoot{p.~\thepage /\pageref{LastPage}}
+\begin{framed}
+Naam:
+\end{framed}
+
+\begin{tabular}{ |p{1cm}|p{10.8cm}|p{1.4cm}|>{\raggedleft\arraybackslash}p{1.6cm}| }\hline
+\# &Criterium&Max&Score\\\\ \hline
+$0	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&		&		\\\\ \hline
+	&		&	Totaal	&		\\\\ \hline
+\end{tabular}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+endsnippet
+

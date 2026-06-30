@@ -1,0 +1,69 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1' or env('align')
+
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
+endglobal
+
+snippet ZZ "Integers" wA
+\mathbb{Z}
+endsnippet
+
+snippet RR "Reals" wA
+\mathbb{R}
+endsnippet
+
+snippet CC "Complexes" wA
+\mathbb{C}
+endsnippet
+
+snippet QQ "Rationals" wA
+\mathbb{Q}
+endsnippet
+
+snippet NN "Naturals" wA
+\mathbb{N}
+endsnippet
+
+context "math()"
+snippet cal "mathcal" wA
+\mathcal{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet bb "mathbb" wA
+\mathbb{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet fr "mathfrac" wA
+\mathfrak{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+priority 100
+snippet bf "mathbf" wA
+\mathbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet itt "textit" wA
+\textit{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+priority 100
+snippet itt "mathit" wA
+\mathit{${1:${VISUAL}}}$0
+endsnippet
+
+snippet bf "textbf" wA
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+snippet '(red|blue|green)text' "colored text" rwA
+\{\\color\{`!p snip.rv=match.group(1)`} ${1:${VISUAL}} } $0 
+endsnippet
