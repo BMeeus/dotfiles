@@ -3,5 +3,5 @@ autocmd TextChanged <buffer> silent write " Autosave
 
 " Custom maps
 " (un)comment line
-nnoremap <leader>/ 0i#<esc>
+nnoremap <leader>/ I#<esc>
 nnoremap <leader>u/ $F#x

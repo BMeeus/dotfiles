@@ -7,7 +7,7 @@ set fileformat=unix
 
 " Custom maps
 " (un)comment line
-nnoremap <leader>/ 0I#<esc>
+nnoremap <leader>/ I#<esc>
 nnoremap <leader>u/ $F#x
 
 nnoremap <C-Enter> <cmd>!python3 %<CR>  

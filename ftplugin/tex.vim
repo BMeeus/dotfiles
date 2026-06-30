@@ -1,5 +1,5 @@
 " (un)comment line
-nnoremap <leader>/ 0i%<esc>
+nnoremap <leader>/ I%<esc>
 nnoremap <leader>u/ $F%x
 noremap <C-Enter> <Cmd>update<CR><Plug>(vimtex-compile-ss)
 
