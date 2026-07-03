@@ -109,7 +109,7 @@ set complete-=i
 "}}}
 
 " ALE Linter settings -----{{{
-let g:ale_linters = {'tex': ['chktex', 'texlab'], 'julia': ['languageserver']}
+let g:ale_linters = {'tex': ['chktex', 'texlab'], 'julia': ['languageserver'], 'markdown': ['markdownlint', 'prettier']}
 let g:ale_tex_chktex_options = '-I -n1 -n3 -n8 -n11 -n10 -n15 -n44 -n46 -n48'
 "}}}
 
