@@ -17,7 +17,7 @@ set number relativenumber   " Absolute line nr at cursor, others relative
 set conceallevel=2          " Conceal twice
 set guifont=JetBrains\ mono " Use JetBrains mono (https://www.jetbrains.com/lp/mono/)
 set breakindent             " Wrapped lines maintain indent
-set nofoldenable            " Open all folds when opening file
+set foldlevelstart=99       " Open all folds when opening file 
 
 " The following settings can be overwritten in ftplugin files, keep this as fallback
 set formatoptions=l         " Don't break lines longer than textwidth
@@ -104,7 +104,8 @@ colorscheme nord
 
 " Enable spellcheck -----{{{
 setlocal spell
-set spelllang=en_us
+set spelllang=nl
+set spellfile=~/.vim/spell/nl.utf-8.add
 set complete-=i
 "}}}
 
@@ -182,6 +183,9 @@ onoremap H ^
 onoremap L $
 vnoremap H ^
 vnoremap L $
+
+onoremap <silent> i\| <Cmd>normal! T\|vt\|<CR>
+onoremap <silent> a\| <Cmd>normal! F\|vf\|<CR>
 
 " Move trough windows
 nnoremap <C-j> <C-w>j
