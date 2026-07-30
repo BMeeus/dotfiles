@@ -2,8 +2,8 @@ snippet lk "link" wA
 [${2:$1}](${1:link url})
 endsnippet
 
-snippet [[ "Obsidian link" A
-[[${1:file}|${2:link text}]]
+snippet olk "Obsidian link" A
+[[${1:file}${2/.+/|/}${2:link text}]]
 endsnippet
 
 snippet btt "Bold text" wA

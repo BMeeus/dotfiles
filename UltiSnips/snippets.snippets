@@ -8,3 +8,12 @@ endsnippet
 snippet -- "Commented line with a bunch of dashes ----------------- " bA
 # --------------------------------------------- #
 endsnippet
+
+snippet '\$(\d+)d' "TabStop with default value" rA
+\$\{`!p snip.rv = match.group(1)`:${1:val}}$0
+endsnippet
+
+snippet '\$(\d+)c' "TabStop conditional" rA
+\$\{`!p snip.rv = match.group(1)`/${1:if}/${2:then}/${3:else}}$0
+endsnippet
+
