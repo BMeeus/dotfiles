@@ -1,0 +1,48 @@
+snippet shb "shebang" bA
+#!/bin/bash
+
+endsnippet
+
+snippet if "if statement" bA
+if [[ ${1:COND} ]]
+then
+    $0
+fi
+endsnippet
+
+snippet elif "elif line" bA
+elif [[ ${1:COND} ]]
+then
+    $0
+endsnippet
+
+snippet while "while loop" bA
+while [ ${1:COND} ]; do
+    $0
+done
+endsnippet
+
+snippet case "match case block" bA
+case ${1:val} in
+    ${2:match})
+        $0
+        ;;
+    *)
+        break
+	;;
+esac
+endsnippet
+
+snippet match "Match block" bA
+${1:match})
+    $0
+    ;;
+endsnippet
+
+snippet getopts "Option parsing" bA
+while getopts "${1:optstring}" opt; do
+    case $opt in
+        ${2:name} $0 ;;
+    esac
+endsnippet
+

@@ -104,7 +104,7 @@ colorscheme nord
 
 " Enable spellcheck -----{{{
 setlocal spell
-set spelllang=nl
+set spelllang=nl,en_us
 set spellfile=~/.vim/spell/nl.utf-8.add
 set complete-=i
 "}}}
