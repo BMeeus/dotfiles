@@ -65,8 +65,8 @@ snippet fig "Figure environment" b
 endsnippet
 
 snippet enum "Enumerate" bA
-\begin{enumerate}
-	\item${1/.+/\[/}$1${1/.+/\]/} $0
+\begin{enumerate}${1/.+/[label=/}${1:\arabic*.}${1/.+/]/}
+	\item${2/.+/\[/}$2${2/.+/\]/} $0
 \end{enumerate}
 endsnippet
 
@@ -77,8 +77,8 @@ snippet itemize "Itemize" bA
 endsnippet
 
 context "envs('itemize', 'enumerate', 'description')"
-snippet nitem "new item" A
-\item${1/.+/\[/}$1${1/.+/\]/} $0
+snippet item "new item" bA
+\item $0
 endsnippet
 
 snippet desc "Description" b

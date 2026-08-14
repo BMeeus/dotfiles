@@ -1,0 +1,35 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1' or env('align')
+
+def comment(): 
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	return x != '0' and y != '0'
+
+def envs(*args):
+	for name in args:
+		[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+		if x != '0' and y != '0':
+			return 1
+
+def notmath():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '0'
+endglobal
+
+snippet s "section" b
+\section{$1}
+$0
+endsnippet
+
+snippet ss "subsection" b
+\subsection{$1}
+$0
+endsnippet
+
+snippet sss "subsubsection" b
+\subsubsection{$1}
+$0
+endsnippet
