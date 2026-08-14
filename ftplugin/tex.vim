@@ -1,3 +1,5 @@
+let g:tex_indent_items=0
+
 " (un)comment line
 nnoremap <leader>/ I%<esc>
 nnoremap <leader>u/ $F%x
