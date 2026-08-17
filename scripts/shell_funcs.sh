@@ -8,7 +8,8 @@
 
 
 VIM="gvim"
-REPOS=( /home/bmeeus/dotfiles )
+REPOS=($(ls -d /home/bmeeus/Documents/Overleaf/*/ | grep -v tmp/$))
+REPOS+=( /home/bmeeus/dotfiles )
 TDIR=/home/bmeeus/dotfiles/templates
 NDIR=/home/bmeeus/research/notes
 OBS=/home/bmeeus/Documents/Obsidian_Vaults/General
@@ -85,6 +86,7 @@ StartDay () {
 
     # Open daily note
     cd $OBS 
+    git pull
     $VIM ./Dailies/$(date +%Y-%m-%d).md
 
     # update on mondays
@@ -159,14 +161,10 @@ EndDay () {
     if [[ $IGNORE = 0 ]]
     then
 	err=0
-	echo got here
 	for repo in "${REPOS[@]}"; do
-	    rerr=0
-	    echo got there
 	    cd $repo
-	    reponame="${repo##*/}"
-	    echo set var
-	    (check_staged "${reponame}")
+	    result="${repo%"${repo##*[!/]}"}" # multi-trailing-/ trim
+	    (check_staged "${result##*/}")
 	    if [[ $? = 1 ]]
 	    then
 		err=1
