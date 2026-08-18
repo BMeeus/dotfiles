@@ -121,7 +121,7 @@ snippet 'par([a-zA-Z]|.)([a-zA-Z])' "d/dx" rwA
 endsnippet
 
 context "math()"
-snippet 'pdar([a-zA-Z])([a-zA-Z]|.)([a-zA-Z])' "d/dx" rwA
+snippet 'dp([a-zA-Z])([a-zA-Z]|.)([a-zA-Z])' "d/dx" rwA
 \frac{\partial^2 `!p snip.rv= match.group(1)`}{\partial `!p
 if match.group(2) == ".":
     snip.rv = match.group(3) + "^2"
@@ -437,4 +437,9 @@ endsnippet
 context "math()"
 snippet ddt "time derivative" wA
 \frac{d$1}{d${2:t}}$0
+endsnippet
+
+context "math()"
+snippet bxd "boxed formula" wA
+\boxed{${1:${VISUAL}}}$0
 endsnippet
