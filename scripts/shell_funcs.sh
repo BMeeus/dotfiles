@@ -30,7 +30,7 @@ OBS=/home/bmeeus/Documents/Obsidian_Vaults/General
 # --------------------------------------------------------------------------------------
 StartDay () {
     APPEND=false
-    
+
     # Parse options
     while getopts ":a:" opt; do
 	case $opt in
@@ -180,4 +180,32 @@ EndDay () {
     cd $OBS
     git add -A && git commit -m "Daily commit $(date +%Y-%m-%d)" && git push
     poweroff
+}
+
+CleanDailies () {
+    if (( $# .neq 2 ))
+    then
+	echo You must give two arguments, YYYY and MM to be cleaned.
+    elif ! [[  $1 =~ ^[0-9][0-9][0-9][0-9]$   ]]
+    then
+	echo First argument must be year in YYYY format	    
+    elif ! [[  $2 =~ ^[0-9][0-9]$   ]]
+    then
+	echo Second argument must be month in MM format	    
+    fi
+
+    # Extract year and month from args
+    Y=$1
+    M=$2
+
+    OLDDIR=pwd
+
+    # Move to dailies folder and make monthly folder
+    cd $OBS/Dailies
+    mkdir -p $Y/$M
+
+    # Move all daily notes of selected month
+    mv $Y-$M* ./$Y/$M
+
+    cd OLDDIR
 }
