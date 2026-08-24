@@ -4,7 +4,8 @@ let b:ale_fix_on_save = 1
 
 command -nargs=? Obs call s:OpenInObsidian(<q-args>)
 noremap <silent> <c-o> :call <SID>OpenWikiLink()<CR>
-
+nnoremap <leader>c vT\|ot\|yf\|p
+nnoremap <leader>f <cmd>TableFormat<CR>
 
 function! s:OpenInObsidian(arg)
     let l:target = empty(a:arg) ? expand('%') : a:arg
