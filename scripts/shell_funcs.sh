@@ -107,6 +107,7 @@ StartDay () {
 DN () {
     cd ~/Documents/Obsidian_Vaults/General/ 
     $VIM ./Dailies/$(date +%Y-%m-%d).md
+    exit
 }
 
 # NB
