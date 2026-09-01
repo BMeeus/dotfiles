@@ -87,6 +87,7 @@ StartDay () {
     # Open daily note
     cd $OBS 
     git pull
+    cp $TDIR/template_DN.md ./Dailies/$(date +%Y-%m-%d).md
     $VIM ./Dailies/$(date +%Y-%m-%d).md
 
     # update on mondays
@@ -183,7 +184,7 @@ EndDay () {
 }
 
 CleanDailies () {
-    if (( $# .neq 2 ))
+    if ! [[ $# -eq 2 ]]
     then
 	echo You must give two arguments, YYYY and MM to be cleaned.
     elif ! [[  $1 =~ ^[0-9][0-9][0-9][0-9]$   ]]
@@ -207,5 +208,5 @@ CleanDailies () {
     # Move all daily notes of selected month
     mv $Y-$M* ./$Y/$M
 
-    cd OLDDIR
+    cd $OLDDIR
 }
