@@ -1,20 +1,70 @@
+global !p
+from datetime import datetime
+day = int(datetime.today().strftime('%w'))
+match day:
+    case 1: # Monday
+        val9 = "Mail + opstarten"
+        val10 =  val11 = "Papers lezen"
+        val13 = ""
+        val14 = ""
+        val15 = ""
+        val16 = "Tiny tasks/afwerken"
+    case 2: # Tuesday
+        val9 = "Mail + opstarten"
+        val10 = val11 = "Schrijven"
+        val13 = ""
+        val14 = ""
+        val15 = ""
+        val16 = "Tiny tasks/afwerken"
+    case 3: # Wednesday
+        val9 = "Mail + opstarten"
+        val10 = val11 = "Schrijven"
+        val13 = ""
+        val14 = ""
+        val15 = ""
+        val16 = "Tiny tasks/afwerken"
+    case 4: # Thursday
+        val9 = "Mail + opstarten"
+        val10 = ""
+        val11 = ""
+        val13 = ""
+        val14 = ""
+        val15 = ""
+        val16 = "Tiny tasks/afwerken"
+    case 5: # Friday
+        val9 = "Mail + opstarten"
+        val10 =  val11 = "Papers lezen"
+        val13 = ""
+        val14 = ""
+        val15 = ""
+        val16 = "Tiny tasks/afwerken"
+    case _: # Weekend
+        val9 = "Mail + opstarten"
+        val10 = ""
+        val11 = ""
+        val13 = ""
+        val14 = ""
+        val15 = ""
+        val16 = "Tiny tasks/afwerken"
+endglobal
+
 snippet DagPlan "Dag planning" bA
 # Voormiddag
 
 |        | Plan | Gedaan |
 |--------|-------:|-------:|
-|9u - 10u | ${1:Mail + opstarten}    |        |
-|10u - 11u | $2    |        |
-|11u - 12u | $3    |        |
+|9u - 10u | ${1:`!p snip.rv = val9`}    |        |
+|10u - 11u | ${2:`!p snip.rv = val10`}    |        |
+|11u - 12u | ${3:`!p snip.rv = val11`}    |        |
 
 # Namiddag
 
 |        | Plan | Gedaan |
 |--------|-------:|-------:|
-|13u - 14u | $4    |        |
-|14u - 15u | $6    |        |
-|15u - 16u | $7    |        |
-|16u - 17u | ${0:Tiny tasks/afwerken}    |        |
+|13u - 14u | ${4:`!p snip.rv = val13`}    |        |
+|14u - 15u | ${6:`!p snip.rv = val14`}    |        |
+|15u - 16u | ${7:`!p snip.rv = val15`}    |        |
+|16u - 17u | ${0:`!p snip.rv = val16`}    |        |
 
 # Notities
 
