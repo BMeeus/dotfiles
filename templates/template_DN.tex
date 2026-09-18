@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{hyperref} % creates hyperlinks, does not vibe with math in section headers
+% \usepackage{mathpazo} % Use the Palatino font by default
+% \usepackage{palatino}
+\usepackage{graphicx} % graphics
+\usepackage{float} % floats
+\usepackage{titling} % drop vertical space before the title
+\usepackage{multirow} % allows multi row cells in tables
+\usepackage{lscape} % allows placing parts in lanscape
+\usepackage{amsmath} % lots of math
+\usepackage{amssymb} % even more math
+\usepackage{subcaption} % allows captions for subfigs
+\usepackage[english]{babel} % spellcheck
+\usepackage{titlesec} % Control over titlestyles
+\usepackage{amsthm} % new theorem envs
+\usepackage{todonotes} % I mean, its obvious
+\usepackage{enumitem} % more control over enumerate/itemise
+\usepackage{cancel} % for slashing trough symbols
+\usepackage{bbm}
+
+\usepackage{listings} % Displaying code
+\lstset{basicstyle=\ttfamily\footnotesize,
+  showstringspaces=false,
+  commentstyle=\color{gray},
+  keywordstyle=\color{blue},
+  breaklines=true
+}
+
+\usepackage[a4paper, total={6in, 9.5in}]{geometry} % Use A4 in stead of letter
+\fontfamily{ppl}\selectfont 
+
+\usepackage{setspace} % paragraphs and stuff
+\renewcommand{\baselinestretch}{1.5}
+\setlength{\parindent}{0 em}
+\setlength{\parskip}{0.4 cm}
+\setlength{\intextsep}{0pt}
+
+\setstretch{1.125}
+\setlength\abovedisplayskip{0pt}
+\setlength\belowdisplayskip{0pt}
+
+\usepackage{mathtools} % mathematical typesetting
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\sto}{\overset{s}{\to}} % strong conv
+\newcommand{\wto}{\overset{w}{\to}} % weak conv
+\DeclareMathOperator{\Ima}{Im} % Image of func
+\newcommand{\bigslant}[2]{{\left.\raisebox{.2em}{$#1$}\middle/\raisebox{-.2em}{$#2$}\right.}} % Quotient space
+
+% Boxed text environment
+\newsavebox{\boxedtextbox}
+
+\newenvironment{boxedtext}
+  {%
+    \par\noindent
+    \begin{lrbox}{\boxedtextbox}%
+      \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+      \ignorespaces
+  }
+  {%
+      \end{minipage}%
+    \end{lrbox}%
+    \fbox{\usebox{\boxedtextbox}}%
+    \par
+  }
+
+% Boxed text that is single item
+\newenvironment{boxeditem}[1][\relax]{%
+    \begin{boxedtext}
+    \begin{itemize}
+      \ifx#1\relax % Use dot if no argument given
+        \item
+      \else
+        \item[#1]
+      \fi
+      \ignorespaces}
+  {%
+    \end{itemize}
+    \end{boxedtext}
+  }
+
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{
+    leftmargin=-1em,
+    rightmargin=-1em,
+    middlelinewidth=1.5pt,
+    middlelinecolor=black,
+    innertopmargin=1.5\topskip,
+    innerbottommargin=1\topskip,
+    skipabove=\baselineskip,
+    skipbelow=0,
+    nobreak=true,
+    roundcorner=10pt
+}
+
+\newmdenv[backgroundcolor = red!10]{wrong}
+\newmdenv[backgroundcolor = green!10]{correct}
+
+\newmdtheoremenv[backgroundcolor=blue!10]{question}{Question}
+\newmdtheoremenv[linewidth=0]{confusion}{Confusion}
+\newmdtheoremenv[backgroundcolor=blue!10]{answer}{Answer}
+
+\newmdtheoremenv[]{idea}{Idea}
+\newmdtheoremenv[]{claim}{Claim}
+\newmdtheoremenv[linewidth=0]{remark}{Remark}
+\newmdtheoremenv[]{problem}{Problem}
+\newmdtheoremenv[]{eg}{Example}
+\newmdtheoremenv[backgroundcolor = yellow!10, nobreak=false]{bart}{Bart}
+
+\newmdtheoremenv[backgroundcolor=green!5]{mydefinition}{Definition}
+\newmdtheoremenv[backgroundcolor=green!5]{mytheorem}{Theorem}
+\newmdtheoremenv[backgroundcolor=green!5]{mylemma}{Lemma}
+
+\renewmdenv[
+    bottomline=false,
+    topline=false,
+    rightline=false,
+    fontcolor=black!70
+]{quote}
+
+\newmdenv[fontcolor=black!10, linewidth=0]{ditch}
+% BIBLIOGRAPHY %%%%%%%%%%%%%%
+%\usepackage[style=numeric,natbib=true, sorting=ynt]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+%\usepackage{csquotes}
+%\setquotestyle{english}
+
+% \addbibresource{Refs.bib} % The filename of the bibliography
+
+% To print bibliography, add \printbibliography to EOF
+
+
+\singlespacing
+
+\setlength{\droptitle}{-5em} %% Don't touch
+
+\begin{document}
+
+
+
+
+\end{document}
+

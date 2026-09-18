@@ -83,12 +83,14 @@ StartDay () {
 
     # Create Tex notebook
     cp $TDIR/template_DN.tex note.tex
+    $VIM note.tex
 
     # Open daily note
     cd $OBS 
     git pull
     cp $TDIR/template_DN.md ./Dailies/$(date +%Y-%m-%d).md
     $VIM ./Dailies/$(date +%Y-%m-%d).md
+    
 
     # update on mondays
     if [[ $(date +%u) -eq 1 ]]
