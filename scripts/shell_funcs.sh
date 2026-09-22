@@ -77,13 +77,15 @@ StartDay () {
     if [[ $APPEND = true ]]; then
 	echo Appending to Notebook of $PREVDATE
 	cp $NDIR/$PREVDATE/note.xopp note.xopp
+	gnome-terminal -- bash -c "xournalpp note.xopp"
     else
 	cp $TDIR/template_DN.xopp note.xopp
+	gnome-terminal -- bash -c "xournalpp note.xopp"
     fi
 
     # Create Tex notebook
     cp $TDIR/template_DN.tex note.tex
-    $VIM note.tex
+    gnome-terminal -- bash -c "$VIM note.tex"
 
     # Open daily note
     cd $OBS 
@@ -99,7 +101,7 @@ StartDay () {
     fi
 
     # Open obsidian
-    obsidian
+    gnome-terminal -- bash -c "obsidian"
 }
 
 # DN
@@ -107,8 +109,7 @@ StartDay () {
 # Opens Daily Note
 # --------------------------------------------------------------------------------------
 DN () {
-    cd ~/Documents/Obsidian_Vaults/General/ 
-    $VIM ./Dailies/$(date +%Y-%m-%d).md
+    OpenObs ./Dailies/$(date +%Y-%m-%d).md
     exit
 }
 
@@ -212,4 +213,14 @@ CleanDailies () {
     mv $Y-$M* ./$Y/$M
 
     cd $OLDDIR
+}
+
+OpenObs () {
+    if [[ $# -eq 1 ]]
+    then
+	cd $OBS
+	$VIM $1
+    else
+	echo Please specify exactly one file to open.
+    fi
 }
