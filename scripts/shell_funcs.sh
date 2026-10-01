@@ -118,7 +118,7 @@ DN () {
 # Opens Xournal notebook
 # --------------------------------------------------------------------------------------
 NB () {
-    xournalpp /home/bmeeus/research/notes/$(date +%Y-%m-%d)/note.xopp
+    gnome-terminal -- bash -c "xournalpp /home/bmeeus/research/notes/$(date +%Y-%m-%d)/note.xopp"
 }
 
 # TNB
