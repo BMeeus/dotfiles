@@ -77,15 +77,14 @@ StartDay () {
     if [[ $APPEND = true ]]; then
 	echo Appending to Notebook of $PREVDATE
 	cp $NDIR/$PREVDATE/note.xopp note.xopp
-	gnome-terminal -- bash -c "xournalpp note.xopp"
     else
 	cp $TDIR/template_DN.xopp note.xopp
-	gnome-terminal -- bash -c "xournalpp note.xopp"
     fi
+    gnome-terminal --tab -- bash -c "xournalpp note.xopp"
 
     # Create Tex notebook
     cp $TDIR/template_DN.tex note.tex
-    gnome-terminal -- bash -c "$VIM note.tex"
+    $VIM note.tex
 
     # Open daily note
     cd $OBS 
@@ -101,7 +100,7 @@ StartDay () {
     fi
 
     # Open obsidian
-    gnome-terminal -- bash -c "obsidian"
+    gnome-terminal --tab -- bash -c "obsidian"
 }
 
 # DN
@@ -118,7 +117,7 @@ DN () {
 # Opens Xournal notebook
 # --------------------------------------------------------------------------------------
 NB () {
-    gnome-terminal -- bash -c "xournalpp /home/bmeeus/research/notes/$(date +%Y-%m-%d)/note.xopp"
+    gnome-terminal --tab -- bash -c "xournalpp /home/bmeeus/research/notes/$(date +%Y-%m-%d)/note.xopp"
 }
 
 # TNB
