@@ -31,6 +31,12 @@ OBS=/home/bmeeus/Documents/Obsidian_Vaults/General
 StartDay () {
     APPEND=false
 
+    # update on mondays
+    if [[ $(date +%u) -eq 1 ]]
+    then
+	sudo apt upgrade && sudo apt update
+    fi
+
     # Parse options
     while getopts ":a:" opt; do
 	case $opt in
@@ -86,21 +92,14 @@ StartDay () {
     cp $TDIR/template_DN.tex note.tex
     $VIM note.tex
 
-    # Open daily note
+    # Create daily note
     cd $OBS 
     git pull
     cp $TDIR/template_DN.md ./Dailies/$(date +%Y-%m-%d).md
-    $VIM ./Dailies/$(date +%Y-%m-%d).md
     
-
-    # update on mondays
-    if [[ $(date +%u) -eq 1 ]]
-    then
-	sudo apt upgrade && sudo apt update
-    fi
-
-    # Open obsidian
+    # Open obsidian and daily note
     gnome-terminal --tab -- bash -c "obsidian"
+    vim ./Dailies/$(date +%Y-%m-%d).md
 }
 
 # DN
@@ -187,22 +186,26 @@ EndDay () {
 }
 
 CleanDailies () {
+
     if ! [[ $# -eq 2 ]]
     then
 	echo You must give two arguments, YYYY and MM to be cleaned.
+	exit 1
     elif ! [[  $1 =~ ^[0-9][0-9][0-9][0-9]$   ]]
     then
 	echo First argument must be year in YYYY format	    
+	exit 1
     elif ! [[  $2 =~ ^[0-9][0-9]$   ]]
     then
 	echo Second argument must be month in MM format	    
+	exit 1
     fi
+
+    OLDDIR=$PWD
 
     # Extract year and month from args
     Y=$1
     M=$2
-
-    OLDDIR=pwd
 
     # Move to dailies folder and make monthly folder
     cd $OBS/Dailies
