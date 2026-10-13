@@ -20,5 +20,5 @@ snippet ibtt "Italic Bold text" wA
 endsnippet
 
 snippet todo "ToDo item" bA
-- [ ] TODO 
+- [ ] TODO ${1:tiny} $2 ${3/.+/[priority:: /}${3:lowest/low/medium/high/highest}${3/.+/]/} ${4/.+/[due:: /}${4:YYYY-MM-DD}${4/.+/]/}$0
 endsnippet
