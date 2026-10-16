@@ -139,6 +139,7 @@ export EDYN=/home/bmeeus/Documents/Overleaf/Oefenzittingen_EM
 export SIF=/home/bmeeus/Documents/Overleaf/Oefenzittingen_SiF
 export OVERL=/home/bmeeus/Documents/Overleaf
 export OBS=/home/bmeeus/Documents/Obsidian_Vaults/General
+export DOT=/home/bmeeus/dotfiles
 
 alias OLtoken='cat ~/Documents/Overleaf/token.txt | xclip -selection clipboard | echo "Token copied to clipboard"'
 alias eRC='gvim ~/.bashrc'

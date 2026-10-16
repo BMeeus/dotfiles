@@ -172,6 +172,11 @@ nnoremap <leader>a ;.
 
 " Start new line here
 nnoremap <leader>i ko
+
+" Insert date
+nnoremap <F5> "=strftime("%Y-%m-%d")<CR>P
+inoremap <F5> <C-R>=strftime("%Y-%m-%d")<CR>
+vnoremap <F5> <C-R>=strftime("%Y-%m-%d")<CR>
 "}}}
 
 " Navigation -----{{{
