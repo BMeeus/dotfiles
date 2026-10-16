@@ -2,10 +2,20 @@ let b:ale_completion_enabled = 1
 let b:ale_fixers = ['prettier', 'markdownlint']
 let b:ale_fix_on_save = 1
 
+" Open file in obsidian
 command -nargs=? Obs call s:OpenInObsidian(<q-args>)
+
+" Follow wikilink in Obsidian
 noremap <silent> <c-o> :call <SID>OpenWikiLink()<CR>
+
+" copy table entry to cell right
 nnoremap <leader>c vT\|ot\|yf\|p
+
+" Format table
 nnoremap <leader>f <cmd>TableFormat<CR>
+
+" Check task as done and add completion
+nnoremap <leader>d ^t]rxA [completion:: ]<Esc>"=strftime("%Y-%m-%d")<CR>P
 
 function! s:OpenInObsidian(arg)
     let l:target = empty(a:arg) ? expand('%') : a:arg

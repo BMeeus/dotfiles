@@ -19,6 +19,12 @@ snippet ibtt "Italic Bold text" wA
 ***${1:${VISUAL}}*** $0
 endsnippet
 
-snippet todo "ToDo item" bA
-- [ ] TODO ${1:tiny} $2 ${3/.+/[priority:: /}${3:lowest/low/medium/high/highest}${3/.+/]/} ${4/.+/[due:: /}${4:YYYY-MM-DD}${4/.+/]/}$0
+snippet todob "ToDo block" b
+> [!todo]
+> $0
+endsnippet
+
+snippet note "note block" b
+> [!note]
+> $0
 endsnippet
