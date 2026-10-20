@@ -22,3 +22,53 @@ vnoremap k gk
 " Insert todo
 nnoremap <leader>td i\todo{}
 inoremap <localleader>td \todo{}<esc>i
+
+" Toggle draft
+command DraftOn execute "normal! ggf]i,draft<Esc>``"
+command DraftOff execute "normal! gg/,draft<Esc>d6l``"
+command ToggleDraft call ToggleLatexDraft()
+
+function! ToggleLatexDraft() abort
+    let l:line = getline(1)
+    
+    " Check if line 1 contains \documentclass
+    if l:line !~# '\\documentclass'
+        echohl WarningMsg
+        echo "Line 1 does not contain \\documentclass"
+        echohl None
+        return
+    endif
+
+    " Case 1: ',draft' exists -> remove it
+    if l:line =~# ',draft\>'
+        let l:new_line = substitute(l:line, ',draft\>', '', '')
+        call setline(1, l:new_line)
+        echo "LaTeX draft mode disabled"
+
+    " Case 2: 'draft,' exists (e.g. \documentclass[draft,12pt]{article}) -> remove it
+    elseif l:line =~# '\<draft,'
+        let l:new_line = substitute(l:line, '\<draft,', '', '')
+        call setline(1, l:new_line)
+        echo "LaTeX draft mode disabled"
+
+    " Case 3: 'draft' is the only option (e.g. \documentclass[draft]{article}) -> remove 'draft'
+    elseif l:line =~# '\[\s*draft\s*\]'
+        let l:new_line = substitute(l:line, '\[\s*draft\s*\]', '', '')
+        call setline(1, l:new_line)
+        echo "LaTeX draft mode disabled"
+
+    " Case 4: Options bracket exists -> append ',draft' inside brackets
+    elseif l:line =~# '\[.\{-}\]'
+        let l:new_line = substitute(l:line, '\]', ',draft]', '')
+        call setline(1, l:new_line)
+        echo "LaTeX draft mode enabled"
+
+    " Case 5: No options bracket exists -> insert '[draft]' before '{'
+    else
+        let l:new_line = substitute(l:line, '\\documentclass', '\\documentclass[draft]', '')
+        call setline(1, l:new_line)
+        echo "LaTeX draft mode enabled"
+    endif
+endfunction
+
+
