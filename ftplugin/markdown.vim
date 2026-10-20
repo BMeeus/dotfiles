@@ -36,6 +36,6 @@ function! s:OpenWikiLink()
     if !empty(l:link)
         call s:OpenInObsidian(l:link)
     else
-        echo "No link found under cursor."
+        echom "No link found under cursor."
     endif
 endfunction
