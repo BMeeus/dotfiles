@@ -78,6 +78,7 @@ call plug#end()
 
 " YCM ----{{{
 	let g:ycm_key_list_select_completion = ['<Down>']
+	let g:ycm_filetype_blacklist = { "tex": 1 }
 "}}}
 
 " FastFold----{{{
@@ -88,14 +89,15 @@ call plug#end()
 
 " NERDTree----{{{
 	let NERDTreeIgnore=['\.synctex.gz$','\~$']
+	let NERDTreeQuitOnOpen = 1
 "}}}
 "}}}
 
 " VimTex - YCM connection -----{{{
-if !exists('g:ycm_semantic_triggers')
-let g:ycm_semantic_triggers = {}
-endif
-au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+"if !exists('g:ycm_semantic_triggers')
+"let g:ycm_semantic_triggers = {}
+"endif
+"au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 "}}}
  
 " Colors -----{{{
