@@ -1,0 +1,42 @@
+global !p
+from datetime import datetime
+from os import urandom
+today = datetime.today().strftime('%Y-%m-%d')
+endglobal
+
+snippet todo "ToDo item" w
+- [ ] TODO $0 
+endsnippet
+
+priority 100
+snippet ttodo "tiny ToDo item" w
+- [ ] TODO tiny $0 
+endsnippet
+
+snippet prio "Set priority" w
+[priority:: ${1:lowest/low/medium/high/highest}]$0
+endsnippet
+
+snippet due "Set due date" w
+[due:: ${1}]$0
+endsnippet
+
+snippet start "Set start date" w
+[start:: ${1}]$0
+endsnippet
+
+snippet done "Set done date" w
+[completion:: ${1:`!p snip.rv = today`}]
+endsnippet
+
+snippet id "Create task id" w
+[id:: ${1:`!p 
+if not snip.c:
+    snip.rv = urandom(3).hex()
+`}]
+endsnippet
+
+snippet depend "Create dependence" w
+[dependson:: ${1:task ID}]
+endsnippet
+
