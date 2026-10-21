@@ -21,6 +21,31 @@ snippet due "Set due date" w
 [due:: ${1}]$0
 endsnippet
 
+snippet 'due_(\d+)' "Set due date" wr
+[due:: `!p
+from datetime import date, timedelta
+
+snip.rv = date.today() + timedelta(days=int(match.group(1)))
+`]
+endsnippet
+
+snippet 'due_(\d*)(Mon|Tue|Wed|Thu|Fri|Sat|Sun)' "Set due date weekday" wr
+[due:: `!p
+import datetime 
+
+if not match.group(1):
+    wks = 0
+else:
+    wks = int(match.group(1))-1
+
+onDay = lambda date, day: date + datetime.timedelta(days=(day-date.weekday()-1)%7+1, weeks = wks)
+
+day_to_num = {"Mon": 0, "Tue": 1, "Wed": 2, "Thu": 3, "Fri": 4, "Sat": 5, "Sun": 6}
+
+snip.rv = onDay(datetime.date.today(), day_to_num[match.group(2)])
+`]
+endsnippet
+
 snippet start "Set start date" w
 [start:: ${1}]$0
 endsnippet
