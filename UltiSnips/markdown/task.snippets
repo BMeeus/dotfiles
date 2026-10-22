@@ -1,67 +1,70 @@
 global !p
-from datetime import datetime
-from os import urandom
-today = datetime.today().strftime('%Y-%m-%d')
+day_to_num = {"Mon": 0, "Tue": 1, "Wed": 2, "Thu": 3, "Fri": 4, "Sat": 5, "Sun": 6}
+code_to_prio = {"--": "lowest", "-": "low", "": "medium", "-+": "medium", "+-": "medium", "+": "high", "++": "highest"}
 endglobal
 
 snippet todo "ToDo item" w
-- [ ] TODO $0 
+- [ ] TODO  
 endsnippet
 
 priority 100
 snippet ttodo "tiny ToDo item" w
-- [ ] TODO tiny $0 
+- [ ] TODO tiny  
 endsnippet
 
 snippet prio "Set priority" w
-[priority:: ${1:lowest/low/medium/high/highest}]$0
+[priority:: ${1:lowest/low/medium/high/highest}] $0
+endsnippet
+
+snippet 'prio([-+]{,2})' "Set priority" wr
+[priority:: `!p snip.rv = code_to_prio[match.group(1)]`] 
 endsnippet
 
 snippet due "Set due date" w
-[due:: ${1}]$0
+[due:: ${1:`date +"%Y-%m-%d"`}] $0
 endsnippet
 
-snippet 'due_(\d+)' "Set due date" wr
-[due:: `!p
+snippet '(start|due)(\d+)' "Set due date x days in future" wr
+[`!p snip.rv = match.group(1)`:: `!p
 from datetime import date, timedelta
 
-snip.rv = date.today() + timedelta(days=int(match.group(1)))
-`]
+snip.rv = date.today() + timedelta(days=int(match.group(2)))
+`] 
 endsnippet
 
-snippet 'due_(\d*)(Mon|Tue|Wed|Thu|Fri|Sat|Sun)' "Set due date weekday" wr
-[due:: `!p
+snippet '(start|due)(\d*)(Mon|Tue|Wed|Thu|Fri|Sat|Sun)' "Set due date by weekday" wr
+[`!p snip.rv = match.group(1)`:: `!p
 import datetime 
 
-if not match.group(1):
+if not match.group(2):
     wks = 0
 else:
-    wks = int(match.group(1))-1
+    wks = int(match.group(2))-1
 
 onDay = lambda date, day: date + datetime.timedelta(days=(day-date.weekday()-1)%7+1, weeks = wks)
 
-day_to_num = {"Mon": 0, "Tue": 1, "Wed": 2, "Thu": 3, "Fri": 4, "Sat": 5, "Sun": 6}
-
-snip.rv = onDay(datetime.date.today(), day_to_num[match.group(2)])
-`]
+snip.rv = onDay(datetime.date.today(), day_to_num[match.group(3)])
+`] 
 endsnippet
 
 snippet start "Set start date" w
-[start:: ${1}]$0
+[start:: ${1:`date -d tomorrow +"%Y-%m-%d"`}] $0
 endsnippet
 
 snippet done "Set done date" w
-[completion:: ${1:`!p snip.rv = today`}]
+[completion:: ${1:`date +"%Y-%m-%d"`}] $0
 endsnippet
 
 snippet id "Create task id" w
 [id:: ${1:`!p 
+from os import urandom
+
 if not snip.c:
     snip.rv = urandom(3).hex()
-`}]
+`}] $0
 endsnippet
 
 snippet depend "Create dependence" w
-[dependson:: ${1:task ID}]
+[dependson:: ${1:task ID}] $0
 endsnippet
 
