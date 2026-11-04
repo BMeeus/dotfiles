@@ -1,6 +1,6 @@
 global !p
 day_to_num = {"Mon": 0, "Tue": 1, "Wed": 2, "Thu": 3, "Fri": 4, "Sat": 5, "Sun": 6}
-code_to_prio = {"--": "lowest", "-": "low", "": "medium", "-+": "medium", "+-": "medium", "+": "high", "++": "highest"}
+code_to_prio = {"--": "lowest", "-": "low", "-+": "medium", "+-": "medium", "+": "high", "++": "highest"}
 endglobal
 
 snippet todo "ToDo item" w
@@ -16,12 +16,12 @@ snippet prio "Set priority" w
 [priority:: ${1:lowest/low/medium/high/highest}] $0
 endsnippet
 
-snippet 'prio([-+]{,2})' "Set priority" wr
+snippet 'prio([-+]{1,2})' "Set priority" wr
 [priority:: `!p snip.rv = code_to_prio[match.group(1)]`] 
 endsnippet
 
 snippet due "Set due date" w
-[due:: ${1:`date +"%Y-%m-%d"`}] $0
+[due:: ${1:`date +"%Y"`}-${2:`date +"%m"`}-${3:`date +"%d"`}] $0
 endsnippet
 
 snippet '(start|due)(\d+)' "Set due date x days in future" wr
