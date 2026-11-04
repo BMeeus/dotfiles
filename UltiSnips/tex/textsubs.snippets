@@ -10,7 +10,7 @@ def env(name):
 	return x != '0' and y != '0'
 
 def notmath():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '0'
+	return not math()
 endglobal
 
 

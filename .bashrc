@@ -148,3 +148,5 @@ alias sRC='source ~/.bashrc'
 source ~/dotfiles/scripts/shell_funcs.sh 
 
 alias ..="cd .."
+
+. "$HOME/.local/bin/env"

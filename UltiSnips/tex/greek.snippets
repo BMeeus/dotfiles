@@ -16,7 +16,7 @@ def envs(*args):
 			return 1
 
 def notmath():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '0'
+	return not math()
 endglobal
 
 snippet @a "alpha" iA
