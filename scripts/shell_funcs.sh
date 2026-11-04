@@ -9,7 +9,7 @@
 
 VIM="gvim"
 REPOS=($(ls -d /home/bmeeus/Documents/Overleaf/*/ | grep -v tmp/$))
-REPOS+=( /home/bmeeus/dotfiles )
+REPOS+=( /home/bmeeus/dotfiles /home/bmeeus/TLabTemplates )
 TDIR=/home/bmeeus/dotfiles/templates
 NDIR=/home/bmeeus/research/notes
 OBS=/home/bmeeus/Documents/Obsidian_Vaults/General
@@ -86,11 +86,11 @@ StartDay () {
     else
 	cp $TDIR/template_DN.xopp note.xopp
     fi
-    gnome-terminal --tab -- bash -c "xournalpp note.xopp"
+    # gnome-terminal --tab -- bash -c "xournalpp note.xopp"
 
     # Create Tex notebook
     cp $TDIR/template_DN.tex note.tex
-    $VIM note.tex
+    # $VIM note.tex
 
     # Create daily note
     cd $OBS 
@@ -225,4 +225,15 @@ OpenObs () {
     else
 	echo Please specify exactly one file to open.
     fi
+}
+
+MoveWithLink () {
+    if ! [[ $# -eq 2 ]]
+    then
+       echo First specify file, then destination 
+    fi
+
+    OLDDIR=$PWD
+    mv ./$1 $2$1
+    ln -s $2$1 "$OLDDIR/$1"
 }
