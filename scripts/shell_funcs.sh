@@ -237,3 +237,44 @@ MoveWithLink () {
     mv ./$1 $2$1
     ln -s $2$1 "$OLDDIR/$1"
 }
+
+LinkResearch () {
+    if [[ $1 == "-h" ]]
+    then
+	echo 'Specify project (default PWD) then select note'        
+	return 0
+    fi
+
+    if [[ $# -eq 0 ]]
+    then
+        PROJ=$PWD
+    elif [[ $# -eq 1 ]]
+    then
+        PROJ=$1
+    fi
+    echo "Linking to $PROJ"
+    PS3="Select which note to link: "
+    select NOTE in NB TNB BOTH OTHER
+    do
+        case $NOTE in
+            NB)
+		ln -s $NDIR/$(date +%Y-%m-%d)/note.xopp "$PROJ/note_$(date +%Y-%m-%d).xopp"
+		break
+                ;;
+	    TNB)
+		ln -s $NDIR/$(date +%Y-%m-%d)/note.tex "$PROJ/note_$(date +%Y-%m-%d).tex"
+		break
+	        ;;
+	    BOTH)
+		ln -s $NDIR/$(date +%Y-%m-%d)/note.xopp "$PROJ/note_$(date +%Y-%m-%d).xopp"
+		ln -s $NDIR/$(date +%Y-%m-%d)/note.tex "$PROJ/note_$(date +%Y-%m-%d).tex"
+		break
+	        ;;
+            *)
+                break
+            ;;
+        esac
+	break
+    done   
+    return 0
+}
