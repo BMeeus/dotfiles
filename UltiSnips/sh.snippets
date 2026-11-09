@@ -46,3 +46,9 @@ while getopts "${1:optstring}" opt; do
     esac
 endsnippet
 
+snippet select "select construct" b
+select ${1:Item} in [${2:List}]
+do
+    $0
+done
+endsnippet
