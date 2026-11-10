@@ -159,7 +159,7 @@ nnoremap <leader><leader> za
 " Text editing -----{{{
 
 " Correct previous spelling mistake
-inoremap <C-l> <C-g>u<Esc>[s1z=``a<C-g>u
+inoremap <C-l> <C-g>u<Esc>[s1z=``A<C-g>u
 nnoremap <leader>l <C-g>u[s1z=``<C-g>u
 
 " Add previous spelling mistake to spell list
