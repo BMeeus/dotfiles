@@ -98,7 +98,7 @@ StartDay () {
     cp $TDIR/template_DN.md ./Dailies/$(date +%Y-%m-%d).md
     
     # Open obsidian and daily note
-    gnome-terminal --tab -- bash -c "obsidian"
+    gnome-terminal --tab -- bash -c "/snap/obsidian/current/app/obsidian --no-sandbox"
     vim ./Dailies/$(date +%Y-%m-%d).md
 }
 
@@ -221,7 +221,7 @@ OpenObs () {
     if [[ $# -eq 1 ]]
     then
 	cd $OBS
-	$VIM $1
+	vim $1
     else
 	echo Please specify exactly one file to open.
     fi
