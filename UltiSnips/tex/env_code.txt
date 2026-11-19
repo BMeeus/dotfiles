@@ -1,6 +1,6 @@
 global !p
 def math():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '1' or env('align')
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1' or env('align') or env('gather')
 
 def comment(): 
 	return vim.eval('vimtex#syntax#in_comment()') == '1'
@@ -16,7 +16,7 @@ def envs(*args):
 			return 1
 
 def notmath():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '0'
+	return not math()
 endglobal
 
 
