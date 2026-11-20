@@ -22,7 +22,7 @@ endglobal
 
 context "math()"
 snippet ff "insert frac" wA
-\frac{$1}{$2}$0
+\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
 priority 500
@@ -400,12 +400,12 @@ snippet emset "empty set" wA
 endsnippet
 
 context "math()"
-snippet +- "plus minus" wA
+snippet +- "plus minus" iA
 \pm 
 endsnippet
 
 context "math()"
-snippet -+ "minus plus" wA
+snippet -+ "minus plus" iA
 \mp 
 endsnippet
 
@@ -447,4 +447,9 @@ endsnippet
 context "math()"
 snippet bxd "boxed formula" wA
 \boxed{${1:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet mrk "powerseries" wA
+\sum_{${1:m} = ${2:0}}^{\infty} $0 x^{$1}
 endsnippet
